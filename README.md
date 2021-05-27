@@ -1,4 +1,5 @@
-### Hi there 👋
+### the repository is for studying and backing up some files.
+### you could take them if you like.
 
 <!--
 **amu2980/amu2980** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
