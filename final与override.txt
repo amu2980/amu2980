@@ -1,0 +1,38 @@
+/**********************************************************************************************
+1.final关键字：c++中的final关键字主要有两个用途：
+	
+	1.1.用于类：告诉编译器该类不可被其他类继承，如：
+			
+			class End final{ ...... };
+
+		则其他类再继承End时编译器将会报错
+
+	1.2.用于虚函数或纯虚函数的重写：告诉编译器该虚函数的重写到此结束，之后以该类为基类的类将
+		禁止对该函数再进行重写（定义完全一致的函数会报错，定义符合重载的同名函数会遵行同名访问
+		原则），如：
+
+			class base { public: virtual void show_something() = 0; };
+			class derive : public base { 
+				public : void show_something() final { cout << hello << endl;}
+			};
+			class derive2 : public derive {
+				public : void show_something() { ... }       //error,can not be overrided
+						 void show_something(int i) { ... }  //pass, but derive::show will be hided
+			};
+
+2.override关键字：用于成员函数后显示声明该函数是对基类虚函数或纯虚函数的重写，主要用于防止程序员
+	在重写基类虚函数时手误导致的逻辑错误，而带有override的函数当编译器发现其与基类中的虚函数不一致
+	时会报错，如：
+
+		class base { public: virtual void show_something() = 0; };
+		class derive : public base {
+			public: void show_someting() override {......}  //报错，注意是someting少了h
+		};
+
+注：override所放位置与常成员函数的const位置一致，当重写函数恰好也是常函数时，override需要放在const
+	后面，否则将会报错，当override与final结合使用时表示显示说明该函数是重写并且是最后一个重写，至
+	于二者的先后顺序没有影响，但如果有const则都需要放在const后面（实际上使用final时就已经告诉编译
+	器该函数是重写了，没有必要在使用override）。
+
+
+***********************************************************************************************/

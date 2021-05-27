@@ -1,0 +1,109 @@
+/*******************************************************************************************************
+array类型：c++提供了一种新的数组类型array，其是由模板实现的，需要包含头<array>,相较于C语言的原生数组：
+					int arr[]={1,2,3,4,5}  和  std::array<int,5> ARR{1,2,3,4,5}
+	1）前者会退化为指针，后者不会
+	2）前者不知道自己的大小，后者知道（size（））
+	3）前者无法直接相互赋值，后者可以
+	4）前者不能自动推导类型，后者可以
+
+	1.定义格式：std::array<Type, Size> arrayNAME{factor1,f2,f3,f4,...,Size};【1】
+
+注【1】：c++17提供了对模板的自动推导功能，故此在c++17标准下，上述可写为 std::array arrayNAME{1,2,3,4...},
+	编译器会自动根据赋值来推导元素类型和数组大小（当然，同auto，需要给出初始值且元素类型需要一致）
+
+	2.array的常用成员函数：
+
+		2.1.访问指定元素同时进行越界检查			at（）
+
+		2.2.使用[]通过下标访问元素					operator []
+
+		2.3.访问第一个元素							front()
+
+		2.4.访问最后一个元素						back()
+
+		2.5.返回指向数组中第一个元素的指针			data()
+
+		2.6.检查是否为空							empty()
+
+		2.7.返回容纳的元素数						size()
+
+		2.8.返回可容纳的最大的元素数				max_size()
+
+		2.9.以指定值填满容器						fill(Type value)
+
+		2.10.交换内容								swap(array arr)
+
+		2.11.返回指向容器第一个元素的迭代器			beginc() 或 begin()
+
+		2.12.返回指向容器最后一个元素的迭代器		endc() 或 end()
+
+		2.13.返回指向容器最后元素的逆向迭代器		rbeginc() 或 rbegin()
+
+		2.14.返回容器第一个元素的逆向迭代器			rendc() 或 rend()
+
+	3.array类型兼容基于范围的for循环语句，便于遍历array数组
+
+
+vector类：与array类和数组都类似，用于存放特定数据类型的元素的集合容器，实际上把vector理解为C语言中的变长
+数组可能更相似一些，需要包含头<vector>:
+	
+	1.声明格式：		std::vector<Type> vectorNAME{factor1, f2, f3, f4,...};     //【1】
+
+	注意到与array的不同之处在于vector并没有第二个模板参数Size，即数组的大小，因为vector是一个可变大小的容
+	器而array是固定大小的容器。这是二者最大的区别
+
+注【1】：c++17提供了模板推导的功能，故在c++17标准下上述声明等价于std::vector vectorNAME{f1, f2, ...};编译
+器会根据给出的factor的类型自动推断vector的类型。
+
+	2.vector的常用函数：
+
+	常用构造函数有：
+		1）以特定元素类型直接声明vector对象（1.中例子）
+		2）以已有的vector对象直接声明新的vector对象：				vector<Type> v2{v1};
+		3）以已有的vector对象的部分元素声明新的vector对象：			vector<Type> v2(v1.begin(),v1.end());
+		4）以n个相同的元素声明新的vector对象：						vector<Type> v2(5,'c');
+
+	成员函数有：
+
+		2.1.追加元素								push_back(factor_Type value) : void
+
+		2.2.删除最后一个元素						pop_back() : void
+
+		2.3.返回目前元素的总数						size() : unsigned int
+
+		2.4.返回指定位置的元素						at(int index) : factor_Type
+
+		2.5.像数组一样使用下标运算符				operator []
+
+		2.6.vector判空								empty() : bool
+
+		2.7.清空vector								clear() : void
+
+		2.8.与另一个vector交换内容					swap(vector v2) : void
+
+		2.9.移除pos位置的元素						erase(iterator pos) : iterator
+
+		2.10.在指定位置pos处插入一个元素			insert(iterator pos, Type value) : iterator
+
+		2.11.返回指向容器第一个元素的迭代器			beginc() 或 begin()
+
+		2.12.返回指向容器最后一个元素的迭代器		endc() 或 end()
+
+		2.13.返回指向容器最后元素的逆向迭代器		rbeginc() 或 rbegin()
+
+		2.14.返回容器第一个元素的逆向迭代器			rendc() 或 rend()
+
+
+	3.vector类兼容基于范围的for循环，便于遍历元素。
+
+
+	4.array与vector之间的异同：
+
+		4.1.array存储在栈区，而vector存储在堆区
+
+		4.2.二者都是连续存放的
+
+		4.3.可以理解为array是数组的上位替代，而vector是变长数组的上位替代
+
+
+********************************************************************************************************/
